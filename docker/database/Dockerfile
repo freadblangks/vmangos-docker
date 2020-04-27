@@ -13,3 +13,4 @@ ENV world world_full_05_october_2019
 
 COPY docker/database/generate-db-1.sql /docker-entrypoint-initdb.d
 COPY docker/database/generate-db-2.sh /docker-entrypoint-initdb.d
+
