@@ -1,0 +1,84 @@
+version: "3.7"
+services:
+  vmangos_database:
+    container_name: vmangos_database
+    build:
+      context: .
+      dockerfile: docker/database/Dockerfile
+    ports:
+      - 3306:3306
+    volumes:
+      - vmangos_database:/var/lib/mysql
+      - ./src/core/sql:/opt/vmangos/sql
+      - ./src/database:/opt/vmangos/sql/database
+    env_file: 
+      - ./env/db.env
+      - ./env/mangos.env
+    restart: unless-stopped
+
+  vmangos_realmd:
+    container_name: vmangos_realmd
+    build: 
+      context: .
+      dockerfile: docker/realmd/Dockerfile
+    ports:
+      - 3724:3724
+    volumes:
+      - ./config/realmd.conf:/opt/vmangos/etc/realmd.conf:ro
+    depends_on:
+      - vmangos_database
+    restart: unless-stopped
+
+  vmangos_mangos:
+    container_name: vmangos_mangos
+    tty: true
+    stdin_open: true
+    ports: 
+      - 8085:8085
+      - 7878:7878
+    build:
+      context: .
+      dockerfile: docker/mangos/Dockerfile
+    image: vmangos_mangos:latest
+    volumes:
+      - ./config/mangosd.conf:/opt/vmangos/etc/mangosd.conf:ro
+      - ./src/data/5875:/opt/vmangos/bin/5875:ro
+      - ./src/data/vmaps:/opt/vmangos/bin/vmaps:ro
+      - ./src/data/maps:/opt/vmangos/bin/maps:ro
+      - ./src/data/mmaps:/opt/vmangos/bin/mmaps:ro
+    depends_on:
+      - vmangos_database
+    env_file:
+      - ./env/mangos.env
+    restart: unless-stopped
+
+  vmangos_web_nginx:
+    container_name: vmangos_web_nginx
+    image: nginx:latest
+    ports:
+      - 80:80
+    volumes:
+      - ./src/fusiongen:/var/www/fusiongen            #fusiongen src
+      - ./web/site.conf:/etc/nginx/conf.d/site.conf   #nginx conf
+    depends_on:
+      - vmangos_web_php
+      - vmangos_database
+    restart: always
+
+  vmangos_web_php:
+    container_name: vmangos_web_php
+    build:
+      context: .
+      dockerfile: ./docker/web/Dockerfile
+    image: vmangos_web_php
+    user: 1000:1000
+    volumes:
+      - ./src/fusiongen:/var/www/fusiongen            #fusiongen src
+      - ./web/php.ini:/usr/local/etc/php/php.ini:ro   #php conf
+    depends_on:
+      - vmangos_database
+    restart: always
+
+#Docker-compose volumes
+volumes:
+  vmangos_database:

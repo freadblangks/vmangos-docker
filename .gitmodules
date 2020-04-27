@@ -1,0 +1,12 @@
+[submodule "src/core"]
+	path = src/core
+	url = https://github.com/tsaah/core
+	branch = development
+[submodule "src/database"]
+	path = src/database
+	url = https://github.com/tsaah/database
+	branch = master
+[submodule "src/warden_modules"]
+	path = src/warden_modules
+	url = https://github.com/tsaah/warden_modules
+	branch = master
