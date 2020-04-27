@@ -10,3 +10,7 @@
 	path = src/warden_modules
 	url = https://github.com/tsaah/warden_modules
 	branch = master
+[submodule "core"]
+	path = core
+	url = git@github.com:tsaah/core.git
+	branch = development
