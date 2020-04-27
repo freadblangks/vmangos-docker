@@ -1,16 +1,16 @@
 [submodule "src/core"]
 	path = src/core
-	url = https://github.com/tsaah/core
+	url = git@github.com:tsaah/core.git
 	branch = development
 [submodule "src/database"]
 	path = src/database
-	url = https://github.com/tsaah/database
+	url = git@github.com:tsaah/database.git
 	branch = master
 [submodule "src/warden_modules"]
 	path = src/warden_modules
-	url = https://github.com/tsaah/warden_modules
+	url = git@github.com:tsaah/warden_modules.git
 	branch = master
-[submodule "core"]
-	path = core
-	url = git@github.com:tsaah/core.git
-	branch = development
+[submodule "src/fusiongen"]
+	path = src/fusiongen
+	url = https://gitlab.com/omghixd/fusiongen.git
+	branch = master
