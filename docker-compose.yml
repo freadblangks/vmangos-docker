@@ -42,6 +42,7 @@ services:
     image: vmangos_mangos:latest
     volumes:
       - ./config/mangosd.conf:/opt/vmangos/etc/mangosd.conf:ro
+      - ./src/warden_modules:/opt/vmangos/warden_modules:ro
       - ./src/data/5875:/opt/vmangos/bin/5875:ro
       - ./src/data/vmaps:/opt/vmangos/bin/vmaps:ro
       - ./src/data/maps:/opt/vmangos/bin/maps:ro
