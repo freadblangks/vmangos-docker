@@ -25,6 +25,7 @@ services:
       - 3724:3724
     volumes:
       - ./config/realmd.conf:/opt/vmangos/etc/realmd.conf:ro
+      - ./logs:/opt/vmangos/logs
     depends_on:
       - vmangos_database
     restart: unless-stopped
@@ -42,11 +43,9 @@ services:
     image: vmangos_mangos:latest
     volumes:
       - ./config/mangosd.conf:/opt/vmangos/etc/mangosd.conf:ro
-      - ./src/warden_modules:/opt/vmangos/warden_modules:ro
-      - ./src/data/5875:/opt/vmangos/bin/5875:ro
-      - ./src/data/vmaps:/opt/vmangos/bin/vmaps:ro
-      - ./src/data/maps:/opt/vmangos/bin/maps:ro
-      - ./src/data/mmaps:/opt/vmangos/bin/mmaps:ro
+      - ./src/warden_modules:/opt/vmangos/warden_modules
+      - ./src/data:/opt/vmangos/data
+      - ./logs:/opt/vmangos/logs
     depends_on:
       - vmangos_database
     env_file:
@@ -64,7 +63,7 @@ services:
     depends_on:
       - vmangos_web_php
       - vmangos_database
-    restart: always
+    restart: unless-stopped
 
   vmangos_web_php:
     container_name: vmangos_web_php
@@ -78,7 +77,7 @@ services:
       - ./web/php.ini:/usr/local/etc/php/php.ini:ro   #php conf
     depends_on:
       - vmangos_database
-    restart: always
+    restart: unless-stopped
 
 #Docker-compose volumes
 volumes:

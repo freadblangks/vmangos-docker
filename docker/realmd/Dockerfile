@@ -12,8 +12,8 @@ RUN apt-get update -y && apt-get install -y \
 
 COPY ./vmangos/bin/realmd /opt/vmangos/bin/realmd
 
-WORKDIR /opt/vmangos/bin
+WORKDIR /opt/vmangos/
 
-RUN chmod +x realmd
+RUN chmod +x /opt/vmangos/bin/realmd
 
-CMD ./realmd -c ../etc/realmd.conf
+CMD bin/realmd -c /opt/vmangos/etc/realmd.conf

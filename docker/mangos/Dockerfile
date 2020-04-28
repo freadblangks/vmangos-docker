@@ -12,9 +12,9 @@ RUN apt-get update -y && apt-get install -y \
 
 COPY ./vmangos/bin/mangosd /opt/vmangos/bin/mangosd
 
-WORKDIR /opt/vmangos/bin
+WORKDIR /opt/vmangos
 
-RUN chmod +x /opt/vmangos/bin
+RUN chmod +x /opt/vmangos/bin/mangosd
 
-CMD ./mangosd -c ../etc/mangosd.conf
+CMD bin/mangosd -c /opt/vmangos/etc/mangosd.conf
 
