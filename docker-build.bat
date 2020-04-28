@@ -1,8 +1,5 @@
-@echo off
-
 rem git_submodules
 
-rem git submodule init
 git submodule update --init --remote --recursive -j 8
 
 git submodule status
@@ -18,6 +15,8 @@ rem setup
 cd src\core\sql\migrations
 call merge.bat
 cd ..\..\..\..\
+
+@echo on
 
 docker-compose up -d
 
