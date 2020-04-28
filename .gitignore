@@ -1,4 +1,5 @@
 vmangos
-src/data
+src
 logs
-src/ccache
+src/core
+src/database
