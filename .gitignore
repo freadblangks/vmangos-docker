@@ -1,5 +1,5 @@
-vmangos
-src
-logs
-src/core
-src/database
+vmangos/
+src/
+logs/
+database/
+src/**
