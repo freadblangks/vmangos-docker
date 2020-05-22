@@ -1,7 +1,7 @@
 [submodule "src/core"]
 	path = src/core
 	url = git@github.com:tsaah/core.git
-	branch = development
+	branch = homebrew
 [submodule "src/database"]
 	path = src/database
 	url = git@github.com:tsaah/database.git
