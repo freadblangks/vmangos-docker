@@ -1,4 +1,4 @@
-#Vmangos docker
+# Vmangos docker
 
 That is a docker for my homebrew branch of vmangos fork
 
