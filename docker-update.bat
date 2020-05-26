@@ -1,8 +1,8 @@
 docker-compose up -d vmangos_database
 
-git pull
+git pull -v --stat --depth 1 --progress
 git status
-git submodule update --init --remote --recursive -j 8
+git submodule update --init --remote --recursive --depth 1 -j 8 --progress
 git submodule status
 
 docker build -t vmangos_build -f docker/build/Dockerfile .

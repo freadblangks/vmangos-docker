@@ -8,8 +8,8 @@ services:
     ports:
       - 3306:3306
     volumes:
-      #- vmangos_database:/var/lib/mysql
-      - ./database:/var/lib/mysql
+      - vmangos_database:/var/lib/mysql
+      #- ./database:/var/lib/mysql
       - ./src/core/sql:/opt/vmangos/sql
       - ./src/database:/opt/vmangos/sql/database
     env_file: 
@@ -81,5 +81,5 @@ services:
     restart: unless-stopped
 
 #Docker-compose volumes
-#volumes:
-#  vmangos_database:
+volumes:
+  vmangos_database:
